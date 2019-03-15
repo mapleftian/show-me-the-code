@@ -35,14 +35,13 @@ import random
 def getStringRandom(codeLenth):
     code = ""
     for i in range(0,codeLenth):
-        tmp = random.randint(1,3)
+        tmp = str(random.randint(1,3)) #此处需要对数字转化为字符，或者在IF中比较时，不加引号
         if tmp == '1':
             code = code + str(getRandomNum())
         elif tmp == '2':
             code = code + chr(getUpChar())
         else:
             code = code + chr(getLowerChar())
-
     return code
 
 #随机数字
@@ -51,7 +50,7 @@ def getRandomNum():
 
 #随机大写ASCII码
 def getUpChar():
-    return random.randint(0,25)+97
+    return random.randint(0,25)+65
 
 #随机小写ASCII码
 def getLowerChar():
@@ -67,5 +66,3 @@ if __name__ == '__main__':
         if tmp not in codeList:
             codeList.append(tmp)
             i = i+1
-    for i in codeList:
-        print (i)
