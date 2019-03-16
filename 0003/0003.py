@@ -22,6 +22,9 @@
 '''
 优化：
 优化插入方式，补充插入时间等
+
+python-redis操作方式参考文档地址
+https://www.cnblogs.com/zongfa/p/8029782.html
 '''
 import redis
 from randomCode import randomCodeList
