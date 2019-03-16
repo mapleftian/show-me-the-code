@@ -32,7 +32,7 @@ from PIL import ImageFont
 
 img = Image.open("down.jpeg")
 draw = ImageDraw.Draw(img)
-fontStyle = ImageFont.truetype("Arial.ttf",150,encoding="unic")
+fontStyle = ImageFont.truetype("C:/Windows/Fonts/Arial.ttf",150,encoding="unic")
 width,height = img.size
 draw.text((width/1.3,20),"100",fill=(255,0,0),font=fontStyle)
 img.save("new.jpg")
