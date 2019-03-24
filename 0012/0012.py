@@ -40,11 +40,11 @@ def checkWord(str):
     print(replaceStr)
 
 def readTxt():
-    list = ["北京","程序员","公务员","领导","牛比","牛逼","你娘"]
-    with open("filtered_words.txt","wb") as f:
-        txt = f.read()
-        print(txt)
-    return list
+    words = []
+    with open("filtered_words.txt","r") as f:
+        for word in f.readlines():
+            words.append(word.strip())
+    return words
 
 if __name__ == '__main__':
     str = input("请输入内容：")
