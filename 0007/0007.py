@@ -25,31 +25,30 @@
 import os
 
 def analyze_code(pathInput):
-    txt = open(pathInput,encoding='utf-8').read()
     total_lines = 0
     comment_lines = 0
     blank_lines = 0
     is_comments = False
     start_comment_index = 0 #记录以'''或"""开头的注释位置
-    for index,line in enumerate(txt,start =1):
-        line = line.strip()
-
-        if not is_comments:
-            if line.startswith("'''") or line.startswith('"""'):
-                start_comment_index = index
-                is_comments = True
-            elif line.startswith("#"):
-                comment_lines+=1
-            elif line == '':
-                blank_lines += 1
+    with open(pathInput,"r",encoding="utf8") as f:
+        for line in f.readlines():
+            line = line.strip()
+            if not is_comments:
+                if line.startswith("'''") or line.startswith('"""'):
+                    start_comment_index = f.tell()
+                    is_comments = True
+                elif line.startswith("#"):
+                    comment_lines+=1
+                elif line == '':
+                    blank_lines += 1
+                else:
+                    total_lines += 1
             else:
-                total_lines += 1
-        else:
-            if line.endswith("'''") or line.endswith('"""'):
-                is_comments = False
-                comment_lines = comment_lines+index-start_comment_index+1
-            else:
-                pass
+                if line.endswith("'''") or line.endswith('"""'):
+                    is_comments = False
+                    comment_lines = comment_lines+f.tell()-start_comment_index+1
+                else:
+                    pass
     return total_lines,comment_lines,blank_lines
 
 def dirNotExit(pathInput):
