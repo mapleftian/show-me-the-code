@@ -36,7 +36,7 @@ def dirNotExit(pathInput):
     else:
         return True
 
-#读取路径下对所有照片信息，并保存到一个列表中
+#读取路径下对所有txt信息，并保存到一个列表中
 def readTxt(pathInput):
     array_of_txt = []
     imgAll = os.walk(pathInput)
@@ -45,7 +45,7 @@ def readTxt(pathInput):
             if file.endswith('txt') :
                 array_of_txt.append(os.path.join(path,file))
             else:
-                print("%s不是图片文件\n"%file)
+                print("%s不是日记文件\n"%file)
     return array_of_txt
 
 def maxWord(txtPath):
@@ -63,7 +63,7 @@ def maxWord(txtPath):
             codeDic.pop(key)
     items = list(codeDic.items())
     items.sort(key=lambda x: x[1], reverse=True)
-    return items[0]
+    return items[0][0]
 
 if __name__ == '__main__':
     pathInput = input("请输入文件路径:\n")
