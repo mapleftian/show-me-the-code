@@ -73,3 +73,5 @@ if __name__ == '__main__':
     words = []
     for txt in array_of_txt:
         words.append(maxWord(txt))
+    for word in words:
+        print(word)
