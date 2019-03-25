@@ -38,7 +38,7 @@ def checkWord(str):
 
 def readTxt():
     words = []
-    with open("filtered_words.txt","r") as f:
+    with open("filtered_words.txt",'r',encoding='UTF-8') as f:
         for word in f.readlines():
             words.append(word.strip())
     return words
