@@ -35,7 +35,7 @@ def analyze_code(pathInput):
             line = line.strip()
             if not is_comments:
                 if line.startswith("'''") or line.startswith('"""'):
-                    start_comment_index = f.tell()
+                    start_comment_index = 1
                     is_comments = True
                 elif line.startswith("#"):
                     comment_lines+=1
@@ -46,9 +46,9 @@ def analyze_code(pathInput):
             else:
                 if line.endswith("'''") or line.endswith('"""'):
                     is_comments = False
-                    comment_lines = comment_lines+f.tell()-start_comment_index+1
+                    comment_lines = comment_lines+start_comment_index+1
                 else:
-                    pass
+                    start_comment_index += 1
     return total_lines,comment_lines,blank_lines
 
 def dirNotExit(pathInput):
