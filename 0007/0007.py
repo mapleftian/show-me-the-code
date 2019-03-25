@@ -20,7 +20,7 @@
 
 '''
 优化：
-
+1、使用f.tell()函数在file中计数时总是报错，显示当行f.tell()为1062
 '''
 import os
 
@@ -29,13 +29,13 @@ def analyze_code(pathInput):
     comment_lines = 0
     blank_lines = 0
     is_comments = False
-    start_comment_index = 0 #记录以'''或"""开头的注释位置
+    comment_index = 0 #记录以'''或"""开头的注释位置
     with open(pathInput,"r",encoding="utf8") as f:
         for line in f.readlines():
             line = line.strip()
             if not is_comments:
                 if line.startswith("'''") or line.startswith('"""'):
-                    start_comment_index = 1
+                    comment_index = 1
                     is_comments = True
                 elif line.startswith("#"):
                     comment_lines+=1
@@ -46,9 +46,9 @@ def analyze_code(pathInput):
             else:
                 if line.endswith("'''") or line.endswith('"""'):
                     is_comments = False
-                    comment_lines = comment_lines+start_comment_index+1
+                    comment_lines = comment_lines+comment_index+1
                 else:
-                    start_comment_index += 1
+                    comment_index += 1
     return total_lines,comment_lines,blank_lines
 
 def dirNotExit(pathInput):
