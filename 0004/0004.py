@@ -39,7 +39,7 @@ from nltk.corpus import stopwords
 txtUp = open('hamlet.txt').read()
 txt = txtUp.lower()
 for i in '!"#$%&()*+,-./:;<=>?@[\\]^_‘{|}~,\'':
-    txt.replace(i," ")
+    txt = txt.replace(i," ")
 
 #分词
 codes = txt.split()
