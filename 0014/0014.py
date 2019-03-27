@@ -28,7 +28,8 @@
 import json
 import xlwt
 
-#读取文本内容
+
+# 读取文本内容
 def readTxt():
     path = "student.txt"
     with open(path, 'r', encoding='utf-8') as f:  # 加入UTF-8，使得可以正常显示中文
@@ -36,9 +37,9 @@ def readTxt():
     return txt
 
 
-#保存excel
+# 保存excel
 def saveExcel():
-    txt= readTxt()
+    txt = readTxt()
     txt_key = txt.keys()
     new_excel = xlwt.Workbook(encoding='utf-8')
     new_sheet = new_excel.add_sheet('student')
@@ -52,6 +53,7 @@ def saveExcel():
             new_sheet.write(x, y + 1, label=values[y])
         x = x + 1
     new_excel.save('student.xls')
+
 
 if __name__ == '__main__':
     saveExcel()
