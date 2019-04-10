@@ -42,7 +42,7 @@ def saveExcel():
     txt = readTxt()
     txt_key = txt.keys()
     new_excel = xlwt.Workbook(encoding='utf-8')
-    new_sheet = new_excel.add_sheet('student')
+    new_sheet = new_excel.add_sheet('city')
     x = 0
     for key in txt_key:
         values = txt.get(key)
@@ -51,7 +51,7 @@ def saveExcel():
         # print(u"key is {} , value is {},坐标为({},{})".format(key,values,x,1))
         new_sheet.write(x, 1, label=values)
         x = x + 1
-    new_excel.save('student.xls')
+    new_excel.save('city.xls')
 
 
 if __name__ == '__main__':
