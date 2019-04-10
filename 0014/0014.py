@@ -12,7 +12,7 @@
 '''
 第0014题：
 纯文本文件 student.txt为学生信息, 
-请将上述内容写到 student.xls 文件中
+请将上述内容写到 city.xls 文件中
 '''
 
 '''
@@ -52,7 +52,7 @@ def saveExcel():
             # print(u"key is {} , value is {},坐标为({},{})".format(key,values[y],x,y+1))
             new_sheet.write(x, y + 1, label=values[y])
         x = x + 1
-    new_excel.save('student.xls')
+    new_excel.save('city.xls')
 
 
 if __name__ == '__main__':
