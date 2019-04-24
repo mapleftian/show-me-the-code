@@ -6,14 +6,18 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import requests
-from PIL import Image
-from io import BytesIO
+import os
 
 
 class Tieba0013Pipeline(object):
     def process_item(self, item, spider):
         res = requests.get(item['imgUrl'])
-        image = Image.open(BytesIO(res.content))
-        path_save = "E:\coding\\爬虫内容\\贴吧图片\\"
-        image.save(path_save + item['name'] + ".jpg")
+        path = os.path.join(os.path.pardir,"Image")
+        if not os.path.exists(path):
+            os.mkdir(path)
+        name = str(item['name']) + ".jpg"
+        path_Image = os.path.join(path,name)
+        with open(path_Image,'ab') as fp:
+            fp.write(res.content)
+
         return item
