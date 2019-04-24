@@ -15,7 +15,7 @@ class TiebaspiderSpider(scrapy.Spider):
         count = 0
         for i in range(len(subSelector)):
             content = subSelector[i].extract()
-            pa = re.compile('src="(.*?)"')
+            pa = re.compile('<img pic_type="0" class="BDE_Image" src="(.*?)"')
             url_list = re.findall(pa, content)
             for url in url_list:
                 item = Tieba0013Item()
