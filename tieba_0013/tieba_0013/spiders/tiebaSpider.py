@@ -1,23 +1,26 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from tieba_0013.items import Tieba0013Item
+import re
 
 
 class TiebaspiderSpider(scrapy.Spider):
     name = 'tiebaSpider'
     allowed_domains = ['tieba.baidu.com']
-    start_urls = ['http://tieba.baidu.com/p/2166231880/']
+    start_urls = ['http://tieba.baidu.com/p/2166231880']
 
     def parse(self, response):
         subSelector = response.xpath('//*[@id="j_p_postlist"]/div/div[3]/div[1]')
         items = []
-        count = 1
-        for sub in subSelector:
-            item = Tieba0013Item()
-            sub_url = sub.xpath('//img/@src').extract()
-            for i in range(len(sub_url)):
-                item['imgUrl'] = sub.xpath('//img/@src').extract()[i]
+        count = 0
+        for i in range(len(subSelector)):
+            content = subSelector[i].extract()
+            pa = re.compile('src=".*?"')
+            url_list = re.findall(pa, content)
+            for url in url_list:
+                item = Tieba0013Item()
+                item['imgUrl'] = url[5:-1]
                 item['name'] = count
-                items.append(item)
                 count = count + 1
+                items.append(item)
         return items

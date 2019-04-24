@@ -19,5 +19,4 @@ class Tieba0013Pipeline(object):
         path_Image = os.path.join(path,name)
         with open(path_Image,'ab') as fp:
             fp.write(res.content)
-
         return item
