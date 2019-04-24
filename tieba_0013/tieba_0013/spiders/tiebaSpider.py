@@ -19,7 +19,7 @@ class TiebaspiderSpider(scrapy.Spider):
             url_list = re.findall(pa, content)
             for url in url_list:
                 item = Tieba0013Item()
-                item['imgUrl'] = url[5:-1]
+                item['imgUrl'] = url
                 item['name'] = count
                 count = count + 1
                 items.append(item)
